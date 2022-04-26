@@ -40,6 +40,7 @@
             this.successMessage = new System.Windows.Forms.Label();
             this.tenant2Label = new System.Windows.Forms.Label();
             this.tenant2TextBox = new System.Windows.Forms.TextBox();
+            this.errorDescription = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // tenancyNameLabel
@@ -143,11 +144,22 @@
             this.tenant2TextBox.Size = new System.Drawing.Size(100, 31);
             this.tenant2TextBox.TabIndex = 11;
             // 
+            // errorDescription
+            // 
+            this.errorDescription.AutoSize = true;
+            this.errorDescription.ForeColor = System.Drawing.Color.ForestGreen;
+            this.errorDescription.Location = new System.Drawing.Point(12, 350);
+            this.errorDescription.Name = "errorDescription";
+            this.errorDescription.Size = new System.Drawing.Size(0, 25);
+            this.errorDescription.TabIndex = 12;
+            this.errorDescription.Visible = false;
+            // 
             // AddToDatabase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.errorDescription);
             this.Controls.Add(this.tenant2TextBox);
             this.Controls.Add(this.tenant2Label);
             this.Controls.Add(this.successMessage);
@@ -181,5 +193,6 @@
         public System.Windows.Forms.Label successMessage;
         private System.Windows.Forms.Label tenant2Label;
         private System.Windows.Forms.TextBox tenant2TextBox;
+        public System.Windows.Forms.Label errorDescription;
     }
 }

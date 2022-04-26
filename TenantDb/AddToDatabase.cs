@@ -24,6 +24,7 @@ namespace TenantDb
             {
                 try
                 {
+                    errorDescription.Visible = false;
                     successMessage.Visible = false;
                     bool tenant2IsPresent = false;
                     conn.ConnectionString = @"Data Source=(localdb)\MSSqlLocalDb;Database=tenant;Trusted_Connection=true";
@@ -40,8 +41,11 @@ namespace TenantDb
                 catch (Exception ex)
                 {
                     successMessage.ForeColor = Color.Red;
-                    successMessage.Text = ex.Message;
+                    successMessage.Text = "Error";
                     successMessage.Visible = true;
+                    errorDescription.ForeColor = Color.Red;
+                    errorDescription.Text = ex.Message;
+                    errorDescription.Visible = true;
                     Console.WriteLine(ex.Message);
                 }
                 finally
@@ -89,15 +93,18 @@ namespace TenantDb
         }
         private bool SyncProperty(SqlConnection conn, bool tenant2IsPresent)
         {
-            SqlCommand cmdSyncProperty = new SqlCommand("UPDATE Properties SET tenant1Id = Tenants.tenantId FROM Tenants WHERE Tenancy.tenancyId = (SELECT TOP 1 tenancyId FROM Tenancy ORDER BY tenancyId DESC) AND Tenants.tenantName = @tenantName", conn);
-            cmdSyncProperty.Parameters.AddWithValue("@tenantName", tenant1NameTextbox.Text);
+            SqlCommand cmdSyncPropertyTenancy = new SqlCommand("UPDATE Tenancy SET propertyId = Properties.propertyId FROM Properties WHERE Tenancy.tenancyId = (SELECT TOP 1 tenancyId FROM Tenancy ORDER BY tenancyId DESC) AND Tenancy.tenancyName = @tenancyName;", conn);
+            cmdSyncPropertyTenancy.Parameters.AddWithValue("@tenancyName", tenancyNameTextbox.Text);
+            cmdSyncPropertyTenancy.ExecuteNonQuery();
+            SqlCommand cmdSyncPropertyTenant = new SqlCommand("UPDATE Properties SET tenantId = Tenants.tenantId FROM Tenants WHERE Tenancy.tenancyId = (SELECT TOP 1 tenancyId FROM Tenancy ORDER BY tenancyId DESC) AND Tenants.tenantName = @tenantName", conn);
+            cmdSyncPropertyTenant.Parameters.AddWithValue("@tenantName", tenant1NameTextbox.Text);
             //FIX ME - "The multi-part identifier "Tenancy.tenancyId" could not be bound."
-            cmdSyncProperty.ExecuteNonQuery();
+            cmdSyncPropertyTenant.ExecuteNonQuery();
             if (tenant2IsPresent == true)
             {
-                SqlCommand cmdSyncProperty2 = new SqlCommand("UPDATE Properties SET tenant2Id = Tenants.tenantId FROM Tenants WHERE Tenancy.tenancyId = (SELECT TOP 1 tenancyId FROM Tenancy ORDER BY tenancyId DESC) AND Tenants.tenantName = @tenant2Name", conn);
-                cmdSyncProperty2.Parameters.AddWithValue("@tenant2Name", tenant2TextBox.Text);
-                cmdSyncProperty2.ExecuteNonQuery();
+                SqlCommand cmdSyncPropertyTenant2 = new SqlCommand("UPDATE Properties SET tenant2Id = Tenants.tenantId FROM Tenants WHERE Tenancy.tenancyId = (SELECT TOP 1 tenancyId FROM Tenancy ORDER BY tenancyId DESC) AND Tenants.tenantName = @tenant2Name", conn);
+                cmdSyncPropertyTenant2.Parameters.AddWithValue("@tenant2Name", tenant2TextBox.Text);
+                cmdSyncPropertyTenant2.ExecuteNonQuery();
             }
             return tenant2IsPresent;
         }
