@@ -80,6 +80,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewDatabase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewDatabase.Designer.cs">
+      <DependentUpon>ViewDatabase.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AddToDatabase.resx">
       <DependentUpon>AddToDatabase.cs</DependentUpon>
     </EmbeddedResource>
@@ -95,6 +101,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ViewDatabase.resx">
+      <DependentUpon>ViewDatabase.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Database1DataSet.xsc">
       <DependentUpon>Database1DataSet.xsd</DependentUpon>
     </None>
