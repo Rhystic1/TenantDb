@@ -34,7 +34,7 @@
             // 
             // addToDatabaseButton
             // 
-            this.addToDatabaseButton.Location = new System.Drawing.Point(271, 103);
+            this.addToDatabaseButton.Location = new System.Drawing.Point(139, 42);
             this.addToDatabaseButton.Name = "addToDatabaseButton";
             this.addToDatabaseButton.Size = new System.Drawing.Size(267, 49);
             this.addToDatabaseButton.TabIndex = 0;
@@ -44,22 +44,24 @@
             // 
             // viewDBButton
             // 
-            this.viewDBButton.Location = new System.Drawing.Point(271, 251);
+            this.viewDBButton.Location = new System.Drawing.Point(139, 127);
             this.viewDBButton.Name = "viewDBButton";
             this.viewDBButton.Size = new System.Drawing.Size(267, 49);
             this.viewDBButton.TabIndex = 1;
             this.viewDBButton.Text = "View Database";
             this.viewDBButton.UseVisualStyleBackColor = true;
+            this.viewDBButton.Click += new System.EventHandler(this.viewDBButton_Click_1);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(553, 230);
             this.Controls.Add(this.viewDBButton);
             this.Controls.Add(this.addToDatabaseButton);
+            this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Tenancy Database Tool";
             this.ResumeLayout(false);
 
         }

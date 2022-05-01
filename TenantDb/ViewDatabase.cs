@@ -15,23 +15,14 @@ namespace TenantDb
     {
         public ViewDatabase()
         {
-            InitializeComponent();
-            GetTenanciesFromDB();        
+            InitializeComponent(); 
         }
-        private void GetTenanciesFromDB()
+
+        private void ViewDatabase_Load(object sender, EventArgs e)
         {
-            using (SqlConnection conn = new SqlConnection())
-            {
-                conn.ConnectionString = @"Data Source=(localdb)\MSSqlLocalDb;Database=tenant;Trusted_Connection=true";
-                conn.Open();
-                using (SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Tenancies", conn))
-                {
-                    var tenanciesTable = new DataTable();
-                    adapter.Fill(tenanciesTable);
-                    tenanciesList.DataSource = tenanciesTable;
-                    tenanciesList.DisplayMember = "tenancyName";
-                }
-            }
+            // TODO: This line of code loads data into the 'database1DataSet11.procViewDB' table. You can move, or remove it, as needed.
+            this.procViewDBTableAdapter.Fill(this.database1DataSet11.procViewDB);
+
         }
     }
 }

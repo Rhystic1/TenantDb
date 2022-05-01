@@ -22,8 +22,7 @@ namespace TenantDb
             AddToDatabase addToDatabase = new AddToDatabase();
             addToDatabase.Show();
         }
-
-        private void viewDBButton_Click(object sender, EventArgs e)
+        private void viewDBButton_Click_1(object sender, EventArgs e)
         {
             ViewDatabase viewDatabase = new ViewDatabase();
             viewDatabase.Show();
